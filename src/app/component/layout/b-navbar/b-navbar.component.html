@@ -1,0 +1,11 @@
+<nav class="hidden lg:block fixed top-12 left-0 right-0 bg-primary border-t border-gray-200 z-40">
+  <div class="container-card py-3 mt-2">
+    <div class="flex flex-wrap gap-x-6 gap-y-2 text-base justify-center items-center">
+      <a *ngFor="let item of categories"
+         [routerLink]="item.slug"
+         class="text-white hover:text-[#FFD700] transition">
+        {{ item.label }}
+      </a>
+    </div>
+  </div>
+</nav>
