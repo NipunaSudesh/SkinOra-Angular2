@@ -1,0 +1,39 @@
+<div class="max-w-4xl mx-auto p-6 space-y-6">
+  <!-- Header -->
+  <app-header
+    title="Welcome to SkinOra"
+    description="This is a demo home page using standalone components."
+  ></app-header>
+  <div class="bg-secondary border-primary md:bg-amber-300  text-accent max-w-10xl p-6 mx-auto">
+  <h1 class="text-4xl sm:text-5xl md:text-6xl text-primary
+  ">Hello Angular Tailwind!</h1>
+</div>
+
+  <!-- Typography Examples -->
+  <app-typography variant="h2" text="Contact Form"></app-typography>
+  <app-typography variant="p" text="Please fill out the form below:"></app-typography>
+
+  <!-- Input fields with different sizes -->
+  <app-textinput placeholder="Your Name" size="normal"></app-textinput>
+  <app-textinput placeholder="Your Email" size="large"></app-textinput>
+  <app-textinput placeholder="Username" size="small"></app-textinput>
+
+  <!-- Textarea with rows -->
+  <app-textarea
+    placeholder="Write your message..."
+    size="normal"
+    [rows]="5"
+  ></app-textarea>
+  <app-textarea
+    placeholder="Additional Notes..."
+    size="large"
+    [rows]="7"
+  ></app-textarea>
+
+  <!-- Button variants -->
+  <div class="flex gap-3 flex-wrap">
+    <app-button variant="primary">Primary Button</app-button>
+    <app-button variant="secondary">Secondary Button</app-button>
+    <app-button variant="outline">Outline Button</app-button>
+  </div>
+</div>
