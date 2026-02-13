@@ -1,0 +1,81 @@
+<div class="container-card mt-10 relative">
+
+  <!-- Header -->
+  <app-header
+    [title]="'Shop by Categories'"
+    [description]="'Explore our curated selection of beauty categories tailored to your needs.'"
+  ></app-header>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="text-center py-12">
+    <p class="text-gray-600 text-lg animate-pulse">Loading categories...</p>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="error" class="text-center py-12 text-red-600 font-medium">
+    {{ error }}
+    <button 
+      (click)="fetchCategories()" 
+      class="mt-4 px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
+    >
+      Try Again
+    </button>
+  </div>
+
+  <!-- Main content -->
+  <ng-container *ngIf="!loading && !error">
+
+    <!-- Swiper -->
+    <div *ngIf="categories.length > 0" #swiperEl class="mt-8 swiper w-full">
+      <div class="swiper-wrapper">
+        @for (item of categories; track item._id) {
+          <div class="swiper-slide flex justify-center">
+            <app-category-cart
+              [img]="item.imageUrl"
+              [category]="item.categoriesName"
+              [description]="item.description"
+              [slug]="item.slug"
+            ></app-category-cart>
+          </div>
+        }
+      </div>
+
+      <!-- Pagination (optional - can remove if you don't want dots) -->
+      <!-- <div class="swiper-pagination mt-6"></div> -->
+    </div>
+
+    <!-- View All Categories -->
+    <div class="mt-4 flex items-center justify-center">
+      <button 
+        (click)="viewAllCategories()"
+        class="bg-primary text-white hover:bg-secondary mx-auto block px-5 py-2 rounded-lg font-semibold transition duration-200"
+      >
+        View All Categories
+      </button>
+    </div>
+
+    <!-- Prev Button -->
+    <button
+      (click)="prev()"
+      class="absolute -left-4 top-1/2 -translate-y-1/2 z-10 
+             bg-white/80 hover:bg-secondary p-2 rounded-full shadow transition"
+      type="button"
+      aria-label="Previous slide"
+    >
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+
+    <!-- Next Button -->
+    <button
+      (click)="next()"
+      class="absolute -right-4 top-1/2 -translate-y-1/2 z-10 
+             bg-white/80 hover:bg-secondary p-2 rounded-full shadow transition"
+      type="button"
+      aria-label="Next slide"
+    >
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+
+  </ng-container>
+
+</div>
