@@ -5,8 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-// import { IMAGES } from '../../../../assets/images';
-import { IMAGES } from '../../../../assets/images';
+import { IMAGES } from '../../../../../public/images/index';
 
 @Component({
   selector: 'app-t-navbar',
