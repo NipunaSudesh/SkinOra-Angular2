@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-// import { PublicLayoutComponent } from '../app/component/layout/public-layout/public-layout.component';
+import {Index } from './pages/home/index';
 import { PublicLayoutComponent } from './component/layout/public-layout/public-layout.component';
 
 export const routes: Routes = [
@@ -8,7 +7,7 @@ export const routes: Routes = [
     path: '',
     component: PublicLayoutComponent, 
     children: [
-      { path: '', component: HomeComponent }, 
+      { path: '', component: Index }, 
 
     ],
   },

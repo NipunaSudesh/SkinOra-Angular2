@@ -1,11 +1,11 @@
 export const IMAGES = {
-  banner: '/assets/images/banner.jpg',
-  banner1: '/assets/images/banner1.webp',
-  banner2: '/assets/images/banner2.webp',
-  banner3: '/assets/images/banner3.webp',
-  banner4: '/assets/images/banner4.webp',
-  banner5: '/assets/images/banner5.png',
-  banner6: '/assets/images/banner6.png',
-  logo: '/assets/images/logo.png',
-  contactUs: '/assets/images/contactUs.jpeg'
+  banner: '/images/banner.jpg',
+  banner1:   '/images/banner1.webp',    
+  banner2:   '/images/banner2.webp',
+  banner3:   '/images/banner3.webp',
+  banner4:   '/images/banner4.webp',
+  banner5:   '/images/banner5.png',
+  banner6: '/images/banner6.png',
+  logo: '/images/logo.png',
+  contactUs: '/images/contactUs.jpeg'
 };

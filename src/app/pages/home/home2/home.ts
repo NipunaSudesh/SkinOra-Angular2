@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonComponent } from '../../component/theme/button.component';
-import { HeaderComponent } from '../../component/theme/header.component';
-import { TextInputComponent } from '../../component/theme/textinput.component';
-import { TextareaComponent } from '../../component/theme/textarea.component';
-import { TypographyComponent } from '../../component/theme/typography.component';
-import { ProductCartComponent } from '../../component/cart/product-cart/product-cart.component';
-import { CategoryCartComponent } from '../../component/cart/category-cart/category-cart.component';
-import { AddCartComponent } from '../../component/cart/add-cart/add-cart.component';
+import { ButtonComponent } from '../../../component/theme/button.component';
+import { HeaderComponent } from '../../../component/theme/header.component';
+import { TextInputComponent } from '../../../component/theme/textinput.component';
+import { TextareaComponent } from '../../../component/theme/textarea.component';
+import { TypographyComponent } from '../../../component/theme/typography.component';
+import { ProductCartComponent } from '../../../component/cart/product-cart/product-cart.component';
+import { CategoryCartComponent } from '../../../component/cart/category-cart/category-cart.component';
+import { AddCartComponent } from '../../../component/cart/add-cart/add-cart.component';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +23,7 @@ import { AddCartComponent } from '../../component/cart/add-cart/add-cart.compone
     CategoryCartComponent,
     AddCartComponent
   ],
-  templateUrl: './home.component.html',
+  templateUrl: './home.html',
 })
 export class HomeComponent {
    product = {
