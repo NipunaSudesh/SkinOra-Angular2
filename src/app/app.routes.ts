@@ -1,6 +1,12 @@
 import { Routes } from '@angular/router';
 import {Index } from './pages/home/index';
 import { PublicLayoutComponent } from './component/layout/public-layout/public-layout.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { PrivacyPolicyComponent } from './pages/privacy-policy.component';
+import { TermsComponent } from './pages/terms.component';
+import { ErrorComponent } from './pages/error.component';
+import { ThankYouComponent } from './pages/thank-you.component';
 
 export const routes: Routes = [
         {
@@ -8,8 +14,13 @@ export const routes: Routes = [
     component: PublicLayoutComponent, 
     children: [
       { path: '', component: Index }, 
+      { path: 'about', component: AboutComponent },
+      { path: 'contact', component: ContactComponent },
+      { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  { path: 'terms', component: TermsComponent },
+  { path: 'thank-you', component: ThankYouComponent },
 
     ],
   },
-      // { path: '', component: HomeComponent }, 
+   { path: '**', component: ErrorComponent }
 ];
