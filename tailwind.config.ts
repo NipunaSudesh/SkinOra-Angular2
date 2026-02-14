@@ -1,22 +1,20 @@
-// tailwind.config.js   (in project root, next to angular.json)
-
-import type { Config } from 'tailwindcss'
-
-export default {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   content: [
-    "./src/**/*.{html,ts}",           // scans all Angular templates & components
-    // Add more if you have libs, stories, etc.
-    // "./projects/**/*.{html,ts}",
+    "./src/**/*.{html,ts}",
+    "./src/app/**/*.{html,ts}",
+    "./node_modules/swiper/**/*.{js,ts,css,html}",
+    "./src/component/**/*.{html,ts}",  // your theme/typography is here
   ],
   theme: {
     extend: {
       colors: {
-        primary: "#000080",     // navy blue
-        secondary: "#FFD700",   // gold
-        accent: "#F8FAFC",      // very light gray
+        primary: "#000080",
+        secondary: "#FFD700",
+        accent: "#F8FAFC",
       },
       screens: {
-        xs: "360px",     // small phones
+        xs: "360px",
         sm: "640px",
         md: "768px",
         lg: "1024px",
@@ -24,12 +22,10 @@ export default {
         "2xl": "1536px",
       },
       maxWidth: {
-        "8xl": "90rem",    // 1440px
-        "9xl": "100rem",   // 1600px
-        "10xl": "120rem",  // 1920px
-        "11xl": "140rem",  // 2240px
+        "8xl": "90rem",
+        // ...
       },
     },
   },
   plugins: [],
-} satisfies Config
+}
