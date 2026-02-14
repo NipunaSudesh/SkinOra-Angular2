@@ -17,12 +17,12 @@
     <!-- Error State -->
     <div *ngIf="!isLoading && errorMessage" class="text-center py-20">
       <p class="text-xl text-red-600 font-medium">{{ errorMessage }}</p>
-      <button
+      <!-- <button
         class="mt-6 bg-primary text-white px-8 py-3 rounded-lg hover:bg-secondary transition duration-200 transform hover:scale-105"
         (click)="fetchProducts()"
       >
         Try Again
-      </button>
+      </button> -->
     </div>
 
     <!-- Products Grid -->

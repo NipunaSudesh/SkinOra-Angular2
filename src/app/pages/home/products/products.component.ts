@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { HeaderComponent } from '../../../component/theme/header.component';
 import { ProductCartComponent } from '../../../component/cart/product-cart/product-cart.component';
 import { environment } from '../../../../environments/environment';
@@ -42,51 +43,40 @@ interface Product {
     HeaderComponent,
     ProductCartComponent
   ],
-  templateUrl: './products.html',
+  templateUrl: './products.component.html', 
 })
-export class Products implements OnInit {  
+export class ProductsComponent implements OnInit {   // ← fixed class name
+
   products: Product[] = [];
   isLoading = true;
   errorMessage: string | null = null;
 
   private readonly API_URL = environment.SKINORA_API_URL;
 
-  constructor(private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
-ngOnInit(): void {
-    setTimeout(() => {
-      this.fetchProducts();
-    }, 0);
-  }
-
-  async fetchProducts(): Promise<void> {
-    this.isLoading = true;
-    this.errorMessage = null;
-
-    try {
-      const res = await fetch(`${this.API_URL}/api/products`);
-      // const res = await fetch(`${this.API_URL}/api/catalogs`);
-
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
+  ngOnInit() {
+    this.http.get<Product[]>(`${this.API_URL}/api/products`).subscribe({
+      next: (data) => {
+        this.products = data || [];
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Error fetching products:', err);
+        this.errorMessage = 'Failed to load products. Please try again later.';
+        this.isLoading = false;
       }
-
-      const data = await res.json();
-      this.products = Array.isArray(data) ? data : [];
-      console.log("fatch products", data)
-    } catch (error) {
-      console.error("Error fetching products:", error);
-      this.errorMessage = 'Failed to load products. Please try again later.';
-      this.products = [];
-    } finally {
-      this.isLoading = false;
-    }
+    });
   }
 
   handleAllProductsClick(): void {
     this.router.navigate(['/all-products']);
   }
-    trackById(index: number, item: Product): string {
+
+  trackById(index: number, item: Product): string {
     return item._id;
   }
 }
