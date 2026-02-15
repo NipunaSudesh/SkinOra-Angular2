@@ -1,0 +1,108 @@
+<!-- Overlay (closes drawer when clicked outside) -->
+<!-- <div
+  *ngIf="isOpen"
+  class="fixed inset-0  z-40"
+  (click)="closeDrawer()">
+</div> -->
+
+<!-- Drawer -->
+<mat-drawer-container class="h-full" style="background-color: transparent;" *ngIf="isOpen">
+  <mat-drawer
+    #drawer
+    [opened]="isOpen"
+    mode="over"
+    hasBackdrop="false"
+    position="end"
+    class=" max-w-sm  "
+    (closed)="closeDrawer()">
+
+    <div class="p-5 flex flex-col h-full overflow-y-auto ">
+
+      <!-- Header -->
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-medium text-primary">Filters</h3>
+        <button mat-icon-button (click)="closeDrawer()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+      <!-- Categories -->
+      @if (!hideCategory) {
+        <div class="mb-6">
+          <h4 class="font-medium mb-2 text-gray-800">Categories</h4>
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Select Category</mat-label>
+            <mat-select [(ngModel)]="filters.category"
+                        (ngModelChange)="filtersChange.emit(filters)">
+              <mat-option value="">All Categories</mat-option>
+              @for (cat of categories; track cat.slug) {
+                <mat-option [value]="cat.slug">{{ cat.name }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+      }
+
+      <!-- Country -->
+      <div class="mb-2">
+        <h4 class="font-medium mb-3 text-gray-800">Country</h4>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Select Country</mat-label>
+          <mat-select [(ngModel)]="filters.country"
+                      (ngModelChange)="filtersChange.emit(filters)">
+            <mat-option value="">All Countries</mat-option>
+            @for (country of countries; track country.code) {
+              <mat-option [value]="country.code">{{ country.name }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Brands -->
+      <div class="mb-2">
+        <h4 class="font-medium mb-2 text-gray-800">Brands</h4>
+        <div class="space-y-0 max-h-60 overflow-y-auto">
+          @for (brand of brands; track brand) {
+            <label class="flex items-center gap-2 text-sm cursor-pointer">
+              <mat-checkbox
+                [checked]="filters.brands.includes(brand)"
+                (change)="toggleBrand(brand)">
+                {{ brand }}
+              </mat-checkbox>
+            </label>
+          }
+        </div>
+      </div>
+
+      <!-- Availability -->
+      <div class="mb-3">
+        <h4 class="font-medium mb-2 text-gray-800">Availability</h4>
+        <label class="flex items-center gap-2 text-sm cursor-pointer">
+          <mat-checkbox
+            [(ngModel)]="filters.inStock"
+            (ngModelChange)="filtersChange.emit(filters)">
+            In Stock
+          </mat-checkbox>
+        </label>
+      </div>
+
+      <!-- Actions -->
+      <div class="mt-auto flex gap-3 pt-6 border-t">
+        <button
+          mat-stroked-button
+          class="flex-1 py-2 text-sm"
+          (click)="clearAll()">
+          Clear All
+        </button>
+        <button
+          mat-flat-button
+          color="primary"
+          class="flex-1 py-2 text-sm"
+          (click)="closeDrawer()">
+          Apply Filters
+        </button>
+      </div>
+
+    </div>
+  </mat-drawer>
+</mat-drawer-container>

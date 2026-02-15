@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { BNavbarComponent } from '../b-navbar/b-navbar.component';
 import { FooterComponent } from '../footer/footer.component';
+import { RouterOutlet, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-public-layout',
@@ -13,7 +14,7 @@ import { FooterComponent } from '../footer/footer.component';
     RouterModule,
    NavbarComponent,
     FooterComponent,
-    BNavbarComponent
+    BNavbarComponent,RouterOutlet, RouterLink
   ],
   templateUrl: './public-layout.component.html',
 })

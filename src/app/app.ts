@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { IMAGES } from '../assets/images';
+import { IMAGES } from '../../public/images/index';
 
 @Component({
   selector: 'app-root',

@@ -4,12 +4,21 @@
     <a routerLink="/" class="flex items-center">
 
 <img
+  ngSrc="images/logo.png"
+  width="80"
+  height="40"
+  alt="SkinOra Logo"
+  [priority]="true"           
+  class="h-10 w-auto"
+/>
+
+<!-- <img
   src="https://res.cloudinary.com/dahofpwrr/image/upload/v1768030860/logo_estgwy.png"
   width="80"
   height="40"
   alt="Logo"
   class="h-10 w-auto"
-/>
+/> -->
 
       <span class="text-3xl font-medium text-primary">Skin<span class="text-secondary">Ora</span></span>
     </a>
@@ -23,7 +32,7 @@
         placeholder="Search for products, brands and more"
         class="w-full max-w-sm bg-white h-9 px-4 border border-gray-300 rounded-l-full"
       />
-      <button (click)="handleSearch()" class="bg-primary flex items-center justify-center text-white h-9 px-3 rounded-r-full hover:bg-secondary">
+      <button (click)="handleSearch()" class="bg-[#000080] flex items-center justify-center text-white h-9 px-3 rounded-r-full hover:bg-[#FFD700]">
        
           <mat-icon class="text-lg">search</mat-icon>
       </button>
