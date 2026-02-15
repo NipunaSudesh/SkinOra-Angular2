@@ -10,6 +10,7 @@ import { ThankYouComponent } from './pages/thank-you.component';
 import { AllCategoriesComponent } from './pages/all-categories/all-categories.component';
 import { CategoryPageComponent } from './pages/singleCategory/category-page.component';
 import { AllProductsComponent } from './pages/all-products/all-products.component';
+import { SingleProductComponent } from './pages/single-product/single-product.component';
 
 export const routes: Routes = [
         {
@@ -26,6 +27,7 @@ export const routes: Routes = [
   { path: 'all-categories', component: AllCategoriesComponent },
   { path: 'all-products', component: AllProductsComponent },
 { path: 'product-category/:categorySlug', component: CategoryPageComponent, title: 'Category – SkinOra' },
+{ path: 'product/slug/:slug', component: SingleProductComponent, title: 'Product – SkinOra' },
     ],
   },
   //  { path: '**', component: ErrorComponent }
