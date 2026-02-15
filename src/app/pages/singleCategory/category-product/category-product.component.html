@@ -1,0 +1,149 @@
+<section class="my-8 md:my-10 px-4 sm:px-6 lg:px-8">
+
+  <div class="flex flex-col lg:flex-row gap-6 lg:gap-8 relative">
+
+    <!-- Desktop Filter Sidebar -->
+    <div class="hidden lg:block lg:w-72 xl:w-80 shrink-0">
+      <app-product-filter
+        [filters]="filters"
+        (filtersChange)="filters = $event; applyFilters()"
+        [hideCategory]="true">
+      </app-product-filter>
+    </div>
+
+    <!-- Main Content -->
+    <div class="w-full lg:flex-1">
+
+      <!-- Header -->
+      <app-header
+        [title]="title"
+        description="Premium Skincare And Beauty, Chosen Just For You">
+      </app-header>
+
+      <!-- Mobile Filter Trigger -->
+      <div class="lg:hidden mb-6">
+        <button 
+          class="w-full py-2.5 rounded-2xl shadow-xl text-base font-medium bg-primary hover:bg-secondary text-white"
+          (click)="showMobileFilter = true">
+          Open Filters
+        </button>
+      </div>
+
+      <!-- Mobile Filter Drawer (popup style) -->
+      @if (showMobileFilter) {
+        <!-- Overlay -->
+
+
+        <div
+          class="fixed inset-0 bg-black/50 z-50 transition-opacity"
+          (click)="closeMobileFilter()">
+        </div>
+        <!-- Drawer / Popup -->
+        <div
+          class="fixed top-0  right-0 h-full w-[60%]  rounded-lg  z-50  transform transition-transform duration-300 ease-in-out "
+          
+          [ngClass]="{'translate-x-0': showMobileFilter, 'translate-x-full': !showMobileFilter}">
+          
+          <app-mobile-filter-drawer
+            [isOpen]="showMobileFilter"
+            [filters]="filters"
+            (filtersChange)="filters = $event; applyFilters()"
+            (isOpenChange)="showMobileFilter = $event"
+            [hideCategory]="true">
+          </app-mobile-filter-drawer>
+        </div>
+      }
+
+      <!-- Loading State -->
+      @if (isLoading) {
+        <div class="flex flex-col items-center justify-center py-20">
+          <mat-spinner diameter="60"></mat-spinner>
+          <p class="mt-6 text-gray-600 text-lg font-medium">Loading products...</p>
+        </div>
+      }
+
+      <!-- Error State -->
+      @if (errorMessage && !isLoading) {
+        <div class="flex flex-col items-center justify-center py-20 text-red-600">
+          <mat-icon class="text-8xl">error_outline</mat-icon>
+          <p class="mt-4 text-xl font-medium">{{ errorMessage }}</p>
+          <button mat-raised-button color="primary" class="mt-8 px-10 py-3" (click)="fetchProducts()">
+            Try Again
+          </button>
+        </div>
+      }
+
+      <!-- Products Content -->
+      @if (!isLoading && !errorMessage) {
+        <div class="space-y-6 md:space-y-8">
+
+          <!-- Showing count -->
+          <p class="text-gray-600 text-center lg:text-left px-2">
+            Showing
+            <span class="text-secondary font-semibold">{{ showingRange }}</span>
+            of
+            <span class="text-secondary font-semibold">{{ filteredProducts.length }}</span>
+            products
+          </p>
+
+          <!-- Products Grid -->
+          <div class="flex flex-wrap gap-2 justify-center items-center">
+            @if (currentProducts.length > 0) {
+              @for (product of currentProducts; track product.slug) {
+                <app-product-cart
+                  [id]="product.slug"
+                  [slug]="product.slug"
+                  [imgUrl]="product.imageUrl"
+                  [productName]="product.name"
+                  [productDesc]="product.shortDescription"
+                  [rating]="product.rating"
+                  [OPrice]="product.oldPrice"
+                  [NPrice]="product.price"
+                  [reviewCount]="product.reviewCount">
+                </app-product-cart>
+              }
+            } @else {
+              <div class="col-span-full text-center py-24">
+                <p class="text-gray-500 text-xl font-medium">No products found in this category</p>
+                <p class="mt-3 text-gray-400">Try adjusting filters or check back later</p>
+              </div>
+            }
+          </div>
+
+          <!-- Pagination -->
+          @if (totalPages > 1) {
+            <div class="flex flex-wrap justify-center items-center gap-3 mt-10 md:mt-12">
+              <button
+                mat-raised-button
+                color="primary"
+                class="min-w-28 py-2.5 text-base"
+                [disabled]="currentPage === 1"
+                (click)="goToPage(currentPage - 1)">
+                Previous
+              </button>
+
+              @for (page of [].constructor(totalPages); track $index) {
+                <button
+                  mat-mini-fab
+                  class="w-11 h-11 text-base"
+                  [color]="currentPage === $index + 1 ? 'accent' : 'primary'"
+                  (click)="goToPage($index + 1)">
+                  {{ $index + 1 }}
+                </button>
+              }
+
+              <button
+                mat-raised-button
+                color="primary"
+                class="min-w-28 py-2.5 text-base"
+                [disabled]="currentPage === totalPages"
+                (click)="goToPage(currentPage + 1)">
+                Next
+              </button>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -78,7 +78,7 @@ export class ProductsComponent implements OnInit {
       this.products = Array.isArray(response.data) ? response.data : [];
       this.isLoading = false;
 
-      console.log("product data :", this.products);
+      // console.log("product data home page :", this.products);
 
       this.cdr.detectChanges();  // ← force template to re-render with new data
     } catch (err: any) {

@@ -69,6 +69,9 @@ body {
     xl:px-20
     2xl:px-24;
 }
+.mat-drawer-backdrop {
+  background: transparent !important;
+}
 
 /* Material icon sizing (if using Angular Material) */
 .mat-icon-large {
